@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+#        metadata:
+#          gRPC:
+#            port: ${grpc.server.port}
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        shared-configs:
+          - data-id: grpc-server.yaml
+            group: DEFAULT_GROUP
+            refresh: true
+

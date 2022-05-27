@@ -1,0 +1,70 @@
+#server:
+#  port: 8089
+#spring:
+#  application:
+#    name: gateway-app
+#  redis:
+#    # 连接工厂使用的数据库索引
+#    database: 6
+#    # Redis服务器主机
+#    host: 47.93.2.66
+#    # 登录redis服务器的密码
+#    password: asdfVlife123456
+#    # redis服务器端口
+#    port: 18158
+#    # 数据库连接超时时间 需要指明单位
+#    timeout: 1s
+#    jedis:
+#      pool:
+#        # 池在给定时间可以分配的最大连接数。使用负值无限制
+#        max-active: 1000
+#        # 池中“空闲”连接的最大数量。使用负值表示无限数量的空闲连接。
+#        max-idle: 500
+#        # 目标为保持在池中的最小空闲连接数。这个设置只有在正面的情况下才有效果。
+#        min-idle: 100
+#        # # 等待可用连接的最大时间，负数为不限制
+#        max-wait: 500ms
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 192.168.1.74:8848
+#    gateway:
+#      discovery:
+#        locator:
+#          enabled: true
+#          lower-case-service-id: true
+#      routes:
+#        - id: sharding-app
+#          uri: lb://sharding-app
+#          predicates:
+#            - Path=/sharding/**  #path不能和uri的lb后面一样，不然filters失效，
+#          filters:
+#            - StripPrefix=1
+#            - AddRequestHeader=APP-NAME, sharding-app
+#            - name: CircuitBreaker
+#              args:
+#                name: backendA
+#                fallbackuri: forward:/breaker/fallback
+#resilience4j:
+#  circuitbreaker:
+#    configs:
+#      myConfig:
+#        ringBufferSizeInClosedState: 5
+#        ringBufferSizeInHalfopenState: 3
+#        registerHealthIndicator: true
+#        slidingWindowSize: 10
+#        slidingWindowType: COUNT_BASED
+#        minimumNumberOfCalls: 5
+#        permittedNumberOfCallsInHalfOpenState: 2
+#        automaticTransitionFromOpenToHalfOpenEnabled: false
+#        waitDurationInOpenState: 6s
+#        failureRateThreshold: 50
+#        slowCallDurationThreshold: 1s
+#        slowCallRateThreshold: 50
+#        eventConsumerBuffersize: 5
+#    instances:
+#      backendA:
+#        baseConfig: myConfig
+#logging:
+#  level:
+#    root: DEBUG

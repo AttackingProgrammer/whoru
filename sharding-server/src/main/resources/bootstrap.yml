@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.1.74:8848
+      config:
+        server-addr: 192.168.1.74:8848
+        file-extension: yaml
+        shared-configs:
+          - data-id: sharding-app.yaml
+            group: DEFAULT_GROUP
+            refresh: true
+#          - data-id: mybatis.yaml
+#            group: DEFAULT_GROUP
+#            refresh: true
+#          - data-id: sharding.yaml
+#            group: DEFAULT_GROUP
+#            refresh: true
+#          - data-id: share-resilience4j.yaml
+#            group: DEFAULT_GROUP
+#            refresh: true

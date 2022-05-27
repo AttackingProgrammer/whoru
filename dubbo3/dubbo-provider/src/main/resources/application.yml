@@ -1,0 +1,28 @@
+#server:
+#  port: 8038
+#spring:
+#  application:
+#    name: dubbo3-provider
+#  # dubbo
+#dubbo:
+#  application:
+#    name: dubbo-provider
+#  protocol:
+#    name: dubbo
+#    port: -1
+#    serialization: protobuf
+#  provider:
+#    token: true
+#  scan:
+#    base-packages: com.example.dubboprovider.service
+#  registry:
+#    address: nacos://${nacos.server-address}:${nacos.port}/?username=${nacos.username}&password=${nacos.password}
+#
+#  # nacos
+#nacos:
+#  server-address: 192.168.1.74
+#  port: 8848
+#  username: nacos
+#  password: nacos
+#
+#

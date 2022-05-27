@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.1.74:8848
+      config:
+        server-addr: 192.168.1.74:8848
+        file-extension: yaml
+        shared-configs:
+          - data-id: gateway-app.yaml
+            group: DEFAULT_GROUP
+            refresh: true
+          - data-id: resilience4j.yaml
+            group: DEFAULT_GROUP
+            refresh: true

@@ -1,0 +1,12 @@
+grpc:
+ client:
+  client-api:
+    enableKeepAlive: true
+    keepAliveWithoutCalls: true
+    negotiationType: plaintext
+spring:
+  cloud:
+    nacos:
+     discovery:
+      server-addr: http://192.168.18.21:8848
+      enabled: true

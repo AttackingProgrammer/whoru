@@ -1,0 +1,24 @@
+#server:
+#  port: 8066
+#  # dubbo
+#spring:
+#  application:
+#    name: dubbo3-customer
+#dubbo:
+#  application:
+#    name: dubbo-customer
+#  protocol:
+#    name: dubbo
+#    port: 20881
+#    serialization: protobuf
+#  registry:
+#    address: nacos://${nacos.server-address}:${nacos.port}/?username=${nacos.username}&password=${nacos.password}
+#
+#  # nacos
+#nacos:
+#  server-address: 192.168.1.74
+#  port: 8848
+#  username: nacos
+#  password: nacos
+#
+#

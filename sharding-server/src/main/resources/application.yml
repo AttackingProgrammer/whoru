@@ -1,0 +1,5 @@
+#spring:
+#  application:
+#    name: sharding-app
+#  profiles:
+#    active: on-nacos

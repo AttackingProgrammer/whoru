@@ -1,0 +1,82 @@
+#server:
+#  port: 7835
+#mybatis:
+#  type-aliases-package: com.ydp.shardingserver.entity
+#  config-location: classpath:config/mybatis/default-mybatis-config.xml
+#  mapper-locations: classpath:mapping/*.xml
+#spring:
+#  application:
+#    name: sharding-app
+##  cloud:
+##    nacos:
+##      discovery:
+##        server-addr: 127.0.0.1:8848
+#  shardingsphere:
+#    datasource:
+#      common:
+#        type: com.alibaba.druid.pool.DruidDataSource
+#        driver-class-name: com.mysql.jdbc.Driver
+#      names: ds0
+#      ds0:
+#        type: com.alibaba.druid.pool.DruidDataSource
+#        driver-class-name: com.mysql.jdbc.Driver
+#        url: jdbc:mysql://192.168.1.74:3306/ds0?characterEncoding=utf8
+#        username: ytime_user
+#        password: 98C!bg*P7d4xD46N=$scT@Epn
+#    rules:
+#      sharding:
+#        key-generators:
+#          snowflake:
+#            type: SNOWFLAKE
+#            props:
+#              worker-id: 123
+#        sharding-algorithms:
+#          table-inline:
+#            type: INLINE
+#            props:
+#              algorithm-expression: tab_user_$->{id % 3}
+#        tables:
+#          tab_user:
+#            actual-data-nodes: ds0.tab_user_$->{0..2}
+#            table-strategy:
+#              standard:
+#                sharding-column: id
+#                sharding-algorithm-name: table-inline
+#            key-generate-strategy:
+#              key-generator-name: snowflake
+#              column: id
+#    enabled: true
+#    props:
+#      sql-show: true
+#resilience4j:
+#  circuitbreaker:
+#    configs:
+#      myConfig:
+#        ringBufferSizeInClosedState: 5
+#        ringBufferSizeInHalfopenState: 3
+#        registerHealthIndicator: true
+#        slidingWindowSize: 10
+#        slidingWindowType: COUNT_BASED
+#        minimumNumberOfCalls: 5
+#        permittedNumberOfCallsInHalfOpenState: 2
+#        automaticTransitionFromOpenToHalfOpenEnabled: false
+#        waitDurationInOpenState: 6s
+#        failureRateThreshold: 50
+#        slowCallDurationThreshold: 1s
+#        slowCallRateThreshold: 50
+#        eventConsumerBuffersize: 5
+#    instances:
+#      backendA:
+#        baseConfig: myConfig
+#  ratelimiter:
+#    instances:
+#      myLimiter:
+#        limitForPeriod: 1
+#        limitRefreshPeriod: 15s
+#        timeoutDuration: 15s
+#        registerHealthindicator: true
+#        subscribeForEvents: true
+#        eventConsumerBufferSize: 100
+#logging:
+#  level:
+#    root: debug
